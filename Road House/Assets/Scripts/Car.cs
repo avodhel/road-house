@@ -25,15 +25,20 @@ public class Car : MonoBehaviour
             Move();
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             Move();
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             Move();
             transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            Move();
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
     }
