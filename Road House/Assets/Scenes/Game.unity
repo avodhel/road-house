@@ -444,8 +444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPath: {fileID: 8376028696155042477}
-  mergePath: {fileID: 7280842915937789472, guid: 14eb29bc22627cf42bde2bb391aa63b0,
-    type: 3}
   normalPath: {fileID: 3886501976262635294, guid: a136041cd160ad544b58dc69e82b78e0,
     type: 3}
   paths:
@@ -524,16 +522,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2108964176076917918, guid: 22e38f4f9e76faf40ab204d9fd4a0bab,
-        type: 3}
-      propertyPath: speed
-      value: 14.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108964176076917861, guid: 22e38f4f9e76faf40ab204d9fd4a0bab,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22e38f4f9e76faf40ab204d9fd4a0bab, type: 3}
 --- !u!1001 &8376028696155042476
@@ -547,11 +535,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MergePath
-      objectReference: {fileID: 0}
-    - target: {fileID: 7280842915937789472, guid: 14eb29bc22627cf42bde2bb391aa63b0,
-        type: 3}
-      propertyPath: m_TagString
-      value: mergePathTag
       objectReference: {fileID: 0}
     - target: {fileID: 3319270953538627656, guid: 14eb29bc22627cf42bde2bb391aa63b0,
         type: 3}
