@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject currentPath;
-    //public GameObject mergePath;
     public GameObject normalPath;
     public GameObject[] paths;
 
@@ -33,55 +32,70 @@ public class Spawn : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 10; i++)
+        //Debug.Log("current direction:" + currentDir);
+        MultiplePathsSpawner(10);
+    }
+
+    public void MultiplePathsSpawner(int numberOfPaths)
+    {
+        for (int i = 0; i < numberOfPaths; i++)
         {
             SpawnPath();
         }
     }
 
-    public void SpawnPath()
+    private void SpawnPath()
     {
         if (currentPath.tag == "mergePathTag")
         {
-            float rotationY = currentPath.transform.rotation.eulerAngles.y;
-
-            if (ChoosePathDirection() == Direction.Top)
-            {
-                Debug.Log("Top");
-                currentDir = Direction.Top;
-                currentPath = Instantiate(normalPath,
-                                          currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                          currentPath.transform.rotation);
-            }
-            else if (ChoosePathDirection() == Direction.Left)
-            {
-                currentDir = Direction.Left;
-                Debug.Log("Left");
-                var rotationVector = transform.rotation.eulerAngles;
-                rotationVector.y = rotationY - 90;
-                currentPath = Instantiate(normalPath,
-                                          currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                          Quaternion.Euler(rotationVector));
-            }
-            else if (ChoosePathDirection() == Direction.Right)
-            {
-                currentDir = Direction.Right;
-                Debug.Log("Right");
-                var rotationVector = transform.rotation.eulerAngles;
-                rotationVector.y = rotationY + 90;
-                currentPath = Instantiate(normalPath,
-                                          currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                          Quaternion.Euler(rotationVector));
-            }
+            SpawnNormalPath();
         }
         else if (currentPath.tag == "normalPathTag")
         {
-            //Debug.Log("Top");
-            currentPath = Instantiate(paths[Random.Range(0, paths.Length)], 
-                                      currentPath.transform.GetChild(1).transform.position, 
-                                      currentPath.transform.rotation);
+            SpawnRandomPath();
         }
 
+    }
+
+    private void SpawnRandomPath()
+    {
+        currentPath = Instantiate(paths[Random.Range(0, paths.Length)],
+                                  currentPath.transform.GetChild(1).transform.position,
+                                  currentPath.transform.rotation);
+    }
+
+    private void SpawnNormalPath()
+    {
+        float rotationY = currentPath.transform.rotation.eulerAngles.y;
+
+        if (ChoosePathDirection() == Direction.Top)
+        {
+            Debug.Log("Top");
+            currentDir = Direction.Top;
+            currentPath = Instantiate(normalPath,
+                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
+                                      currentPath.transform.rotation);
+        }
+        else if (ChoosePathDirection() == Direction.Left)
+        {
+            currentDir = Direction.Left;
+            Debug.Log("Left");
+            var rotationVector = transform.rotation.eulerAngles;
+            rotationVector.y = rotationY - 90;
+            currentPath = Instantiate(normalPath,
+                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
+                                      Quaternion.Euler(rotationVector));
+        }
+        else if (ChoosePathDirection() == Direction.Right)
+        {
+            currentDir = Direction.Right;
+            Debug.Log("Right");
+            var rotationVector = transform.rotation.eulerAngles;
+            rotationVector.y = rotationY + 90;
+            currentPath = Instantiate(normalPath,
+                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
+                                      Quaternion.Euler(rotationVector));
+        }
     }
 
     private static Direction ChoosePathDirection()

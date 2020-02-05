@@ -8,10 +8,7 @@ public class MergePath : MonoBehaviour
     {
         if (other.tag == "carTag")
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Spawn.SpawnManager.SpawnPath();
-            }
+           Spawn.SpawnManager.MultiplePathsSpawner(5);
         }
     }
 }
