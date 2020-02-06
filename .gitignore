@@ -36,4 +36,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-
+# Imported Assets
+Road House/Assets/LowPolyGelandwagen*
+Road House/Assets/Urban*
