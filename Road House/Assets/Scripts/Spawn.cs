@@ -33,7 +33,7 @@ public class Spawn : MonoBehaviour
     private void Start()
     {
         //Debug.Log("current direction:" + currentDir);
-        MultiplePathsSpawner(10);
+        MultiplePathsSpawner(25);
     }
 
     public void MultiplePathsSpawner(int numberOfPaths)
