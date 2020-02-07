@@ -8,13 +8,7 @@ public class Spawn : MonoBehaviour
     public GameObject normalPath;
     public GameObject[] paths;
 
-    private enum Direction
-    {
-        Top = 0,
-        Left = 1,
-        Right = 2
-    }
-    private static Direction currentDir;
+    private static PathDirection currentDir;
 
     public static Spawn SpawnManager { get; private set; }
 
@@ -62,34 +56,44 @@ public class Spawn : MonoBehaviour
         currentPath = Instantiate(paths[Random.Range(0, paths.Length)],
                                   currentPath.transform.GetChild(1).transform.position,
                                   currentPath.transform.rotation);
+        //if (currentPath.tag == "mergePathTag")
+        //{
+            //currentPath.GetComponent<MergePath>().PlacingTrafficLight(currentDir);
+        //}
     }
 
     private void SpawnNormalPath()
     {
         float rotationY = currentPath.transform.rotation.eulerAngles.y;
 
-        if (ChoosePathDirection() == Direction.Top)
+        if (ChoosePathDirection() == PathDirection.Top)
         {
             Debug.Log("Top");
-            currentDir = Direction.Top;
+            currentDir = PathDirection.Top;
+            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
+            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
             currentPath = Instantiate(normalPath,
                                       currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
                                       currentPath.transform.rotation);
         }
-        else if (ChoosePathDirection() == Direction.Left)
+        else if (ChoosePathDirection() == PathDirection.Left)
         {
-            currentDir = Direction.Left;
             Debug.Log("Left");
+            currentDir = PathDirection.Left;
+            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
+            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
             var rotationVector = transform.rotation.eulerAngles;
             rotationVector.y = rotationY - 90;
             currentPath = Instantiate(normalPath,
                                       currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
                                       Quaternion.Euler(rotationVector));
         }
-        else if (ChoosePathDirection() == Direction.Right)
+        else if (ChoosePathDirection() == PathDirection.Right)
         {
-            currentDir = Direction.Right;
             Debug.Log("Right");
+            currentDir = PathDirection.Right;
+            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
+            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
             var rotationVector = transform.rotation.eulerAngles;
             rotationVector.y = rotationY + 90;
             currentPath = Instantiate(normalPath,
@@ -98,27 +102,29 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    private static Direction ChoosePathDirection()
+
+
+    private static PathDirection ChoosePathDirection()
     {
         //int randInt = Random.Range(0, 100);
-        if (currentDir == Direction.Left)
+        if (currentDir == PathDirection.Left)
         {
             //randDirIndex = randInt < 10 ? 0 : 2;
             //randDirIndex = 2;
-            return Direction.Right;
+            return PathDirection.Right;
         }
-        else if (currentDir == Direction.Right)
+        else if (currentDir == PathDirection.Right)
         {
             //randDirIndex = randInt < 10 ? 0 : 1;
             //randDirIndex = Random.Range(0, 2);
             //randDirIndex = 1;
-            return Direction.Left;
+            return PathDirection.Left;
         }
         else
         {
             //randDirIndex = Random.Range(0, 3);
-            Direction[] validDirections = new[] { Direction.Top, Direction.Left, Direction.Right };
-            Direction selectedDirection = validDirections[Random.Range(0, validDirections.Length)];
+            PathDirection[] validDirections = new[] { PathDirection.Top, PathDirection.Left, PathDirection.Right };
+            PathDirection selectedDirection = validDirections[Random.Range(0, validDirections.Length)];
             return selectedDirection;
         }
     }

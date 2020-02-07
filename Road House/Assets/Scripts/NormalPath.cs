@@ -21,9 +21,11 @@ public class NormalPath : MonoBehaviour
         if (instantiatePossibility < 50)
         {
             GameObject choosenObject = environmentObjects[Random.Range(0, environmentObjects.Length)];
+
             var objectRotation = new Vector3(choosenObject.transform.rotation.eulerAngles.x,
                                              gameObject.transform.rotation.eulerAngles.y + choosenObject.transform.rotation.eulerAngles.y,
                                              choosenObject.transform.rotation.eulerAngles.z);
+
             GameObject instantiatedObject = Instantiate(choosenObject, objectPoint.position, Quaternion.Euler(objectRotation));
             (instantiatedObject as GameObject).transform.parent = objectPoint.transform;
         }
