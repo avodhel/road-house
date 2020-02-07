@@ -9,10 +9,21 @@ public class NormalPath : MonoBehaviour
     public GameObject[] trees;
     public GameObject[] buildings;
 
+    [Header("AI Car")]
+    public GameObject aiCar;
+    public Transform aiCarSpawnPoint;
+
     private void Start()
     {
         PrepareEnvironment(trees, treePoint);
         PrepareEnvironment(buildings, buildingPoint);
+        SpawnAICar();
+    }
+
+    private void SpawnAICar()
+    {
+        Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(gameObject.transform.rotation.eulerAngles.y);
+        Instantiate(aiCar, aiCarSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
     }
 
     private void PrepareEnvironment(GameObject[] environmentObjects, Transform objectPoint)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MergePath : MonoBehaviour
 {
     public GameObject[] sidePlaces;
+    public PathDirection mergePathDir;
 
     public void ChoosingSidePlace(PathDirection dir)
     {
