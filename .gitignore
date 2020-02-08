@@ -37,5 +37,4 @@ sysinfo.txt
 *.unitypackage
 
 # Imported Assets
-Road House/Assets/LowPolyGelandwagen*
-Road House/Assets/Urban*
+Road House/Assets/ImportedAssets*
