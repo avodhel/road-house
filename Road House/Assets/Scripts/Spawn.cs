@@ -56,10 +56,6 @@ public class Spawn : MonoBehaviour
         currentPath = Instantiate(paths[Random.Range(0, paths.Length)],
                                   currentPath.transform.GetChild(1).transform.position,
                                   currentPath.transform.rotation);
-        //if (currentPath.tag == "mergePathTag")
-        //{
-            //currentPath.GetComponent<MergePath>().PlacingTrafficLight(currentDir);
-        //}
     }
 
     private void SpawnNormalPath()
@@ -71,8 +67,7 @@ public class Spawn : MonoBehaviour
             Debug.Log("Top");
             currentDir = PathDirection.Top;
             currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
-            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
+            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
             currentPath = Instantiate(normalPath,
                                       currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
                                       currentPath.transform.rotation);
@@ -82,8 +77,7 @@ public class Spawn : MonoBehaviour
             Debug.Log("Left");
             currentDir = PathDirection.Left;
             currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
-            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
+            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
             var rotationVector = transform.rotation.eulerAngles;
             rotationVector.y = rotationY - 90;
             currentPath = Instantiate(normalPath,
@@ -95,8 +89,7 @@ public class Spawn : MonoBehaviour
             Debug.Log("Right");
             currentDir = PathDirection.Right;
             currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().MarkingMergePath(currentDir);
-            currentPath.GetComponent<MergePath>().ChoosingSidePlace(currentDir);
+            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
             var rotationVector = transform.rotation.eulerAngles;
             rotationVector.y = rotationY + 90;
             currentPath = Instantiate(normalPath,

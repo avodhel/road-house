@@ -7,7 +7,17 @@ public class MergePath : MonoBehaviour
     public GameObject[] sidePlaces;
     public PathDirection mergePathDir;
 
-    public void ChoosingSidePlace(PathDirection dir)
+    public delegate void PrepareMergePath(PathDirection dir);
+    public PrepareMergePath prepareMergePath;
+
+    private void Awake()
+    {
+        prepareMergePath += ChoosingSidePlace;
+        prepareMergePath += MarkingMergePath;
+        prepareMergePath += FencePlacing;
+    }
+
+    private void ChoosingSidePlace(PathDirection dir)
     {
         GameObject choosenPlace = sidePlaces[Random.Range(0, sidePlaces.Length)];
         if (dir == PathDirection.Top)
@@ -43,9 +53,14 @@ public class MergePath : MonoBehaviour
         }
     }
 
-    public void MarkingMergePath(PathDirection dir)
+    private void MarkingMergePath(PathDirection dir)
     {
         gameObject.transform.GetChild(1).transform.GetChild((int)dir).gameObject.SetActive(true);
+    }
+
+    private void FencePlacing(PathDirection dir)
+    {
+        gameObject.transform.GetChild(3).transform.GetChild((int)dir).gameObject.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)
