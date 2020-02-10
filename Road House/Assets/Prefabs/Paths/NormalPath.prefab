@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2207640796595458372
 Transform:
   m_ObjectHideFlags: 0
@@ -208,9 +208,9 @@ MonoBehaviour:
   - {fileID: 1949177100405964, guid: 4cb9d108e93ee7b4e9fb00e20fc49695, type: 3}
   - {fileID: 1723335361434436, guid: 12d222319a37e5a46993dea99b3f3317, type: 3}
   - {fileID: 1780794977131862, guid: 83e0fa68206f3334aade2cec397bcb07, type: 3}
-  - {fileID: 137972, guid: 881d53679cb031c4fb86cbc2f62f38cc, type: 3}
-  - {fileID: 101242, guid: 0a46bfcc72d80b64980a04edab1d05cd, type: 3}
-  - {fileID: 101316, guid: 6763c493ae65ffd4483edf02827bfea1, type: 3}
+  - {fileID: 7178406272874861894, guid: 67843cff3920dda40890556cb72eeaa4, type: 3}
+  - {fileID: 3136017105534219530, guid: 7059856f1c428024cb4dbcfc3b35ac59, type: 3}
+  - {fileID: 4143376664607145210, guid: c5817d7d73799c448b019b67b847d4a8, type: 3}
   buildings:
   - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
   - {fileID: 188570, guid: 410dd8f6082a58c419287fce7007a783, type: 3}

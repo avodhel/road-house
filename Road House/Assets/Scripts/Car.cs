@@ -13,27 +13,14 @@ public class Car : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        UserInput();
-    }
-
-    private void UserInput()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Move();
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            Move();
-            transform.rotation = Quaternion.Euler(0, -90, 0);
-        }
-    }
-
-    private void Move()
+    public void CarMovement()
     {
         rb.velocity = transform.forward * speed;
+        CarDistance.DistanceCalculater(CarDistanceState.Start);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        CarDistance.DistanceCalculater(CarDistanceState.Stop);
     }
 }
