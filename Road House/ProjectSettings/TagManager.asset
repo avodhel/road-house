@@ -7,6 +7,7 @@ TagManager:
   - mergePathTag
   - normalPathTag
   - carTag
+  - spawnManagerTag
   layers:
   - Default
   - TransparentFX

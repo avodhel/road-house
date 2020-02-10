@@ -22,5 +22,6 @@ public class Car : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         CarDistance.DistanceCalculater(CarDistanceState.Stop);
+        UI.UIManager.GameOver();
     }
 }

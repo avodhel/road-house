@@ -16,7 +16,7 @@ public class CarDistance : MonoBehaviour
         ShowDistance();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (carMovingControl)
         {

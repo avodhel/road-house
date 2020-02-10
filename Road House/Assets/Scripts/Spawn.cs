@@ -10,24 +10,10 @@ public class Spawn : MonoBehaviour
 
     private static PathDirection currentDir;
 
-    public static Spawn SpawnManager { get; private set; }
-
-    private void Awake()
-    {
-        if (SpawnManager == null)
-        {
-            SpawnManager = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Start()
     {
-        //Debug.Log("current direction:" + currentDir);
-        MultiplePathsSpawner(25);
+        currentDir = PathDirection.Top;
+        MultiplePathsSpawner(15);
     }
 
     public void MultiplePathsSpawner(int numberOfPaths)
@@ -60,45 +46,49 @@ public class Spawn : MonoBehaviour
 
     private void SpawnNormalPath()
     {
+        Vector3 pathRotation = GetPathRotationAccordingToDir();
+
+        currentPath = Instantiate(normalPath,
+                          currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
+                          Quaternion.Euler(pathRotation));
+    }
+
+    private Vector3 GetPathRotationAccordingToDir()
+    {
+        Vector3 rotationVec3 = Vector3.zero;
         float rotationY = currentPath.transform.rotation.eulerAngles.y;
 
         if (ChoosePathDirection() == PathDirection.Top)
         {
             Debug.Log("Top");
             currentDir = PathDirection.Top;
-            currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
-            currentPath = Instantiate(normalPath,
-                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                      currentPath.transform.rotation);
+            rotationVec3 = currentPath.transform.rotation.eulerAngles;
         }
         else if (ChoosePathDirection() == PathDirection.Left)
         {
             Debug.Log("Left");
             currentDir = PathDirection.Left;
-            currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
-            var rotationVector = transform.rotation.eulerAngles;
-            rotationVector.y = rotationY - 90;
-            currentPath = Instantiate(normalPath,
-                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                      Quaternion.Euler(rotationVector));
+            rotationVec3 = transform.rotation.eulerAngles;
+            rotationVec3.y = rotationY - 90;
         }
         else if (ChoosePathDirection() == PathDirection.Right)
         {
             Debug.Log("Right");
             currentDir = PathDirection.Right;
-            currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
-            currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
-            var rotationVector = transform.rotation.eulerAngles;
-            rotationVector.y = rotationY + 90;
-            currentPath = Instantiate(normalPath,
-                                      currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                                      Quaternion.Euler(rotationVector));
+            rotationVec3 = transform.rotation.eulerAngles;
+            rotationVec3.y = rotationY + 90;
         }
+
+        PrepareMergePathForSpawn();
+
+        return rotationVec3;
     }
 
-
+    private void PrepareMergePathForSpawn()
+    {
+        currentPath.GetComponent<MergePath>().mergePathDir = currentDir;
+        currentPath.GetComponent<MergePath>().prepareMergePath(currentDir);
+    }
 
     private static PathDirection ChoosePathDirection()
     {
