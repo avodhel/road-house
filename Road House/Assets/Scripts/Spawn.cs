@@ -4,16 +4,40 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
+    [Header("Path")]
     public GameObject currentPath;
     public GameObject normalPath;
     public GameObject[] paths;
 
+    [Header("AI Car")]
+    public GameObject aiCar;
+
+    public static Spawn SpawnManager { get; private set; }
+
     private static PathDirection currentDir;
+
+    private void Awake()
+    {
+        if (SpawnManager == null)
+        {
+            SpawnManager = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         currentDir = PathDirection.Top;
         MultiplePathsSpawner(15);
+    }
+
+    public void SpawnAICar(Transform carSpawnPoint, float carRotation)
+    {
+        Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(carRotation);
+        Instantiate(aiCar, carSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
     }
 
     public void MultiplePathsSpawner(int numberOfPaths)

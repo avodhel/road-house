@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class NormalPath : MonoBehaviour
 {
+    [Header("Tree")]
     public Transform treePoint;
-    public Transform buildingPoint;
     public GameObject[] trees;
+
+    [Header("Building")]
+    public Transform buildingPoint;
     public GameObject[] buildings;
 
     [Header("AI Car")]
-    public GameObject aiCar;
     public Transform aiCarSpawnPoint;
 
     private void Start()
     {
         PrepareEnvironment(trees, treePoint);
         PrepareEnvironment(buildings, buildingPoint);
-        SpawnAICar();
-    }
-
-    private void SpawnAICar()
-    {
-        Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(gameObject.transform.rotation.eulerAngles.y);
-        Instantiate(aiCar, aiCarSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
+        Spawn.SpawnManager.SpawnAICar(aiCarSpawnPoint, gameObject.transform.rotation.eulerAngles.y);
     }
 
     private void PrepareEnvironment(GameObject[] environmentObjects, Transform objectPoint)
     {
-        int instantiatePossibility = Random.Range(0, 100);
-        if (instantiatePossibility < 50)
-        {
+        //int instantiatePossibility = Random.Range(0, 100);
+        //if (instantiatePossibility < 50)
+        //{
             GameObject choosenObject = environmentObjects[Random.Range(0, environmentObjects.Length)];
 
             var objectRotation = new Vector3(choosenObject.transform.rotation.eulerAngles.x,
@@ -39,10 +35,10 @@ public class NormalPath : MonoBehaviour
 
             GameObject instantiatedObject = Instantiate(choosenObject, objectPoint.position, Quaternion.Euler(objectRotation));
             (instantiatedObject as GameObject).transform.parent = objectPoint.transform;
-        }
-        else
-        {
-            return;
-        }
+        //}
+        //else
+        //{
+        //    return;
+        //}
     }
 }

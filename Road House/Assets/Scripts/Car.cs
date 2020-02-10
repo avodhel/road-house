@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public abstract class Car : MonoBehaviour
 {
-    public float speed = 5f;
+    [SerializeField]
+    protected float speed = 5f;
 
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
-    private void Start()
+    protected virtual void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    public void CarMovement()
+    public abstract void CarMovement();
+
+    protected void StopCar()
     {
-        rb.velocity = transform.forward * speed;
-        CarDistance.DistanceCalculater(CarDistanceState.Start);
+        speed = 0f;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        CarDistance.DistanceCalculater(CarDistanceState.Stop);
-        UI.UIManager.GameOver();
+        StopCar();
     }
 }

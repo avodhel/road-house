@@ -10,11 +10,8 @@ public class MergePath : MonoBehaviour
     public delegate void PrepareMergePath(PathDirection dir);
     public PrepareMergePath prepareMergePath;
 
-    private Spawn spawnManager;
-
     private void Awake()
     {
-        spawnManager = GameObject.FindGameObjectWithTag("spawnManagerTag").GetComponent<Spawn>();
         prepareMergePath += ChoosingSidePlace;
         prepareMergePath += MarkingMergePath;
         prepareMergePath += FencePlacing;
@@ -70,7 +67,7 @@ public class MergePath : MonoBehaviour
     {
         if (other.tag == "carTag")
         {
-            spawnManager.MultiplePathsSpawner(5);
+            Spawn.SpawnManager.MultiplePathsSpawner(5);
         }
     }
 }

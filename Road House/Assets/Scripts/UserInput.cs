@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class UserInput : MonoBehaviour
 {
-    private Car car;
+    private PlayerCar playerCar;
 
     private void Start()
     {
-        car = gameObject.GetComponent<Car>();
+        playerCar = gameObject.GetComponent<PlayerCar>();
     }
 
     private void Update()
     {
-        UserInputDetect();
+        if (!playerCar.carCrashedControl)
+        {
+            UserInputDetect();
+        }
     }
 
     private void UserInputDetect()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            car.CarMovement();
+            playerCar.CarMovement();
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            car.CarMovement();
+            playerCar.CarMovement();
             transform.rotation = Quaternion.Euler(0, -90, 0);
         }
     }

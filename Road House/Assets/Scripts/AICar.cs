@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICar : MonoBehaviour
+public class AICar : Car
 {
     public Color[] colors;
 
-    private Rigidbody rb;
-
-    private void Start()
+    protected override void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
+        base.Start();
         ChooseCarColor();
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        CarMovement();
     }
 
     public void ChooseCarColor()
@@ -32,12 +30,12 @@ public class AICar : MonoBehaviour
         return newRot;
     }
 
-    private void Movement()
+    public override void CarMovement()
     {
-        rb.velocity = transform.right * 5f;
+        rb.velocity = transform.right * speed;
     }
 
-    private IEnumerator RotateCar(PathDirection mergePathDir, float waitTimeForRotate)
+    private IEnumerator RotateAICar(PathDirection mergePathDir, float waitTimeForRotate)
     {
         Vector3 objectRotation = Vector3.zero;
         yield return new WaitForSeconds(waitTimeForRotate);
@@ -71,11 +69,11 @@ public class AICar : MonoBehaviour
             PathDirection mergePathDir = other.GetComponent<MergePath>().mergePathDir;
             if (mergePathDir == PathDirection.Left)
             {
-                StartCoroutine(RotateCar(mergePathDir, 0.5f));
+                StartCoroutine(RotateAICar(mergePathDir, 0.5f));
             }
             if (mergePathDir == PathDirection.Right)
             {
-                StartCoroutine(RotateCar(mergePathDir, 1f));
+                StartCoroutine(RotateAICar(mergePathDir, 1f));
             }
         }
     }
