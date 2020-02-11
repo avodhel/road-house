@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class PlayerCar : Car
 {
+    [HideInInspector]
     public bool carCrashedControl = false;
+    private CarMoveState currentMoveState;
 
     public override void CarMovement()
     {
-        rb.velocity = transform.forward * speed;
+        RotateCar();
+        rb.velocity = gameObject.transform.forward * speed;
         CarDistance.DistanceCalculater(CarDistanceState.Start);
+    }
+
+    private void RotateCar()
+    {
+        if (currentMoveState == CarMoveState.TurnLeft)
+        {
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+            currentMoveState = CarMoveState.GoStraight;
+        }
+        else if (currentMoveState == CarMoveState.GoStraight)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            currentMoveState = CarMoveState.TurnLeft;
+        }
     }
 
     protected override void OnCollisionEnter(Collision collision)

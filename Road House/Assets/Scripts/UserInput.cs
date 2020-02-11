@@ -21,15 +21,9 @@ public class UserInput : MonoBehaviour
 
     private void UserInputDetect()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetMouseButtonDown(0))
         {
             playerCar.CarMovement();
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            playerCar.CarMovement();
-            transform.rotation = Quaternion.Euler(0, -90, 0);
         }
     }
 }
