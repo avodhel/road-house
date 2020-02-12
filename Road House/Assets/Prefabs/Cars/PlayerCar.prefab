@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 705971912827872544}
   m_Layer: 0
   m_Name: PlayerCar
-  m_TagString: carTag
+  m_TagString: playerCarTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  carCrashedControl: 0
 --- !u!114 &7978026712863709287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd51b3e5ec6d014d83e37f0b8e927e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceText: {fileID: 0}
 --- !u!54 &705971912827872559
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,11 +15,15 @@ public class NormalPath : MonoBehaviour
     [Header("AI Car")]
     public Transform aiCarSpawnPoint;
 
+    [Header("Coin")]
+    public Transform coinSpawnPoint;
+
     private void Start()
     {
         PrepareEnvironment(trees, treePoint);
         PrepareEnvironment(buildings, buildingPoint);
         Spawn.SpawnManager.SpawnAICar(aiCarSpawnPoint, gameObject.transform.rotation.eulerAngles.y);
+        Spawn.SpawnManager.SpawnCoin(coinSpawnPoint);
     }
 
     private void PrepareEnvironment(GameObject[] environmentObjects, Transform objectPoint)

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarDistance : MonoBehaviour
 {
+    public Text distanceText;
     public static float distanceValue = 0.0f;
 
     private static bool carMovingControl = false;
@@ -13,6 +15,7 @@ public class CarDistance : MonoBehaviour
         if (carMovingControl)
         {
             distanceValue += Time.deltaTime;
+            distanceText.text = distanceValue.ToString("F1");
         }
     }
 

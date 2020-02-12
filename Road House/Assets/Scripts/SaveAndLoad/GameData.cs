@@ -4,9 +4,11 @@
 public class GameData
 {
     public float bestDistance;
+    public int coin;
 
-    public GameData(Game gameData)
+    public GameData(Game gameManager)
     {
-        bestDistance = gameData.bestDistance;
+        bestDistance = gameManager.bestDistance;
+        coin = gameManager.collectedCoins;
     }
 }

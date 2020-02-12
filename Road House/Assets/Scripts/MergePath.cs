@@ -67,7 +67,7 @@ public class MergePath : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "carTag")
+        if (other.tag == "playerCarTag")
         {
             Spawn.SpawnManager.MultiplePathsSpawner(5);
         }

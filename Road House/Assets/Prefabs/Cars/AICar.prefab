@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 5104296877895610929}
   - component: {fileID: 5104296877894600993}
   m_Layer: 0
-  m_Name: AICar1
-  m_TagString: Untagged
+  m_Name: AICar
+  m_TagString: aiCarTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7d8de35d00db84eaa072809cff58fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   colors:
   - {r: 1, g: 0.13679248, b: 0.13679248, a: 1}
   - {r: 0.28702387, g: 0.5952136, b: 0.8113208, a: 1}

@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
 {
     public Text distanceText;
     public Text bestDistanceText;
+    public Text coinText;
     public GameObject gameOverPanel;
 
     public static UI UIManager { get; private set; }
@@ -24,13 +25,21 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Start()
     {
         distanceText.text = CarDistance.GetCurrentDistance().ToString("F1");
+        coinText.text = Game.gameManager.collectedCoins.ToString();
     }
+
+    //private void Update()
+    //{
+    //    distanceText.text = CarDistance.GetCurrentDistance().ToString("F1");
+    //}
 
     public void GameOver()
     {
+        CarDistance.DistanceCalculater(CarDistanceState.Stop);
+        Game.gameManager.CheckBestDistance(CarDistance.GetCurrentDistance());
         bestDistanceText.text = "Best: " + SaveLoadSystem.LoadGameData().bestDistance.ToString("F1");
         gameOverPanel.gameObject.SetActive(true);
     }

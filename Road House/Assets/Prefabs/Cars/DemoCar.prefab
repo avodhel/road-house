@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2108964176076917858}
   - component: {fileID: 2108964176076917861}
   m_Layer: 0
-  m_Name: Car
-  m_TagString: carTag
+  m_Name: DemoCar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 14.1
+  carCrashedControl: 0
 --- !u!33 &2108964176076917856
 MeshFilter:
   m_ObjectHideFlags: 0

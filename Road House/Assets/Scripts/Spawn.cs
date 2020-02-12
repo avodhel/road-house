@@ -12,6 +12,9 @@ public class Spawn : MonoBehaviour
     [Header("AI Car")]
     public GameObject aiCar;
 
+    [Header("Coin")]
+    public GameObject goldCoin;
+
     public static Spawn SpawnManager { get; private set; }
 
     private static PathDirection currentDir;
@@ -38,6 +41,11 @@ public class Spawn : MonoBehaviour
     {
         Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(carRotation);
         Instantiate(aiCar, carSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
+    }
+
+    public void SpawnCoin(Transform coinSpawnPoint)
+    {
+        Instantiate(goldCoin, coinSpawnPoint.transform.position, goldCoin.transform.rotation);
     }
 
     public void MultiplePathsSpawner(int numberOfPaths)
