@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     public Text distanceText;
     public Text bestDistanceText;
     public Text coinText;
+    public GameObject startPanel;
     public GameObject gameOverPanel;
 
     public static UI UIManager { get; private set; }
@@ -31,10 +32,10 @@ public class UI : MonoBehaviour
         coinText.text = Game.gameManager.collectedCoins.ToString();
     }
 
-    //private void Update()
-    //{
-    //    distanceText.text = CarDistance.GetCurrentDistance().ToString("F1");
-    //}
+    public void StartGame()
+    {
+        startPanel.SetActive(false);
+    }
 
     public void GameOver()
     {
