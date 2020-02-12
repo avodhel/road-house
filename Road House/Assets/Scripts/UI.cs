@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public Text distanceText;
+    public Text bestDistanceText;
     public GameObject gameOverPanel;
 
     public static UI UIManager { get; private set; }
@@ -23,8 +24,14 @@ public class UI : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        distanceText.text = CarDistance.GetCurrentDistance().ToString("F1");
+    }
+
     public void GameOver()
     {
+        bestDistanceText.text = "Best: " + SaveLoadSystem.LoadGameData().bestDistance.ToString("F1");
         gameOverPanel.gameObject.SetActive(true);
     }
 

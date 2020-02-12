@@ -1,33 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CarDistance : MonoBehaviour
 {
     public static float distanceValue = 0.0f;
 
-    private static Text distanceText;
     private static bool carMovingControl = false;
-
-    private void Start()
-    {
-        distanceText = UI.UIManager.distanceText;
-        ShowDistance();
-    }
 
     private void Update()
     {
         if (carMovingControl)
         {
             distanceValue += Time.deltaTime;
-            ShowDistance();
         }
     }
 
-    private void ShowDistance()
+    public static float GetCurrentDistance()
     {
-        distanceText.text = distanceValue.ToString("F1");
+        return distanceValue;
     }
 
     public static void DistanceCalculater(CarDistanceState state)

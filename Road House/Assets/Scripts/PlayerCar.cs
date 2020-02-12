@@ -34,6 +34,7 @@ public class PlayerCar : Car
         base.OnCollisionEnter(collision);
         carCrashedControl = true;
         CarDistance.DistanceCalculater(CarDistanceState.Stop);
+        Game.gameManager.CheckBestDistance(CarDistance.GetCurrentDistance());
         UI.UIManager.GameOver();
     }
 }
