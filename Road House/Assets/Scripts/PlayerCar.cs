@@ -18,15 +18,22 @@ public class PlayerCar : Car
 
     private void RotateCar()
     {
-        if (currentMoveState == CarMoveState.TurnLeft)
-        {
-            transform.rotation = Quaternion.Euler(0, -90, 0);
-            currentMoveState = CarMoveState.GoStraight;
-        }
-        else if (currentMoveState == CarMoveState.GoStraight)
+        if (currentMoveState == CarMoveState.StartEngine)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             currentMoveState = CarMoveState.TurnLeft;
+        }
+        else if (currentMoveState == CarMoveState.GoStraight)
+        {
+            FindObjectOfType<SFX>().PlaySoundEffect("turn");
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            currentMoveState = CarMoveState.TurnLeft;
+        }
+        else if (currentMoveState == CarMoveState.TurnLeft)
+        {
+            FindObjectOfType<SFX>().PlaySoundEffect("turn");
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+            currentMoveState = CarMoveState.GoStraight;
         }
     }
 
@@ -34,6 +41,7 @@ public class PlayerCar : Car
     {
         base.OnCollisionEnter(collision);
         carCrashedControl = true;
+        FindObjectOfType<SFX>().PlaySoundEffect("crash");
         UI.UIManager.GameOver();
     }
 }

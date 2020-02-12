@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
 
     public void CoinCollected()
     {
+        FindObjectOfType<SFX>().PlaySoundEffect("coin");
         collectedCoins += 1;
         UI.UIManager.coinText.text = collectedCoins.ToString();
     }

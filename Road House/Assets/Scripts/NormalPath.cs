@@ -22,8 +22,24 @@ public class NormalPath : MonoBehaviour
     {
         PrepareEnvironment(trees, treePoint);
         PrepareEnvironment(buildings, buildingPoint);
-        Spawn.SpawnManager.SpawnAICar(aiCarSpawnPoint, gameObject.transform.rotation.eulerAngles.y);
-        Spawn.SpawnManager.SpawnCoin(coinSpawnPoint);
+        SpawnObject();
+    }
+
+    private void SpawnObject()
+    {
+        int spawnPossibility = Random.Range(0, 100);
+        if (spawnPossibility < 60)
+        {
+            Spawn.SpawnManager.SpawnAICar(aiCarSpawnPoint, gameObject.transform.rotation.eulerAngles.y);
+        }
+        else if (spawnPossibility > 60 && spawnPossibility < 80)
+        {
+            Spawn.SpawnManager.SpawnCoin(coinSpawnPoint);
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void PrepareEnvironment(GameObject[] environmentObjects, Transform objectPoint)
