@@ -21,6 +21,7 @@ public class PlayerCar : Car
         if (currentMoveState == CarMoveState.StartEngine)
         {
             UI.UIManager.StartGame();
+            FindObjectOfType<SFX>().PlaySoundEffect("start");
             transform.rotation = Quaternion.Euler(0, 0, 0);
             currentMoveState = CarMoveState.TurnLeft;
         }

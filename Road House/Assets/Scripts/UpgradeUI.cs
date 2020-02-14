@@ -5,54 +5,76 @@ using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
-    public Button PreviousCarButton;
-    public Button NextCarButton;
     public GameObject playerCar;
+    public Button previousCarButton;
+    public Button nextCarButton;
+    public Button upgradeButton;
+    public Text carPriceText;
 
-    public static CarModel currentCar;
+    private static readonly List<int> priceList = new List<int>{0, 55, 95, 115, 135, 165, 195, 220};
 
-    private void Start()
+    private void OnEnable()
     {
-        currentCar = Upgrade.currentCar;
-        ButtonsActiveState();
+        NextAndPreviouseButtonsActiveState();
+        GetCarPrices();
     }
 
-    private void ButtonsActiveState()
+    private void GetCarPrices()
     {
-        if ((int)currentCar == 1)
+        carPriceText.text = priceList[(int)Upgrade.currentCar - 1].ToString();
+        UpgradeButtonActiveState();
+    }
+
+    private void UpgradeButtonActiveState()
+    {
+        if (Game.gameManager.collectedCoins >= priceList[(int)Upgrade.currentCar - 1])
         {
-            PreviousCarButton.gameObject.SetActive(false);
+            upgradeButton.interactable = true;
         }
-        if ((int)currentCar == playerCar.transform.childCount)
+        else
         {
-            NextCarButton.gameObject.SetActive(false);
+            upgradeButton.interactable = false;
         }
-        if ((int)currentCar > 1 && (int)currentCar < playerCar.transform.childCount - 1)
+    }
+
+    private void NextAndPreviouseButtonsActiveState()
+    {
+        if ((int)Upgrade.currentCar == 1)
         {
-            PreviousCarButton.gameObject.SetActive(true);
-            NextCarButton.gameObject.SetActive(true);
+            previousCarButton.gameObject.SetActive(false);
+        }
+        if ((int)Upgrade.currentCar == playerCar.transform.childCount)
+        {
+            nextCarButton.gameObject.SetActive(false);
+        }
+        if ((int)Upgrade.currentCar > 1 && (int)Upgrade.currentCar < playerCar.transform.childCount - 1)
+        {
+            previousCarButton.gameObject.SetActive(true);
+            nextCarButton.gameObject.SetActive(true);
         }
     }
 
     public void NextCar()
     {
-        if ((int)currentCar < playerCar.transform.childCount)
+        if ((int)Upgrade.currentCar < playerCar.transform.childCount)
         {
-            playerCar.transform.GetChild((int)currentCar - 1).gameObject.SetActive(false);
-            currentCar += 1;
-            playerCar.transform.GetChild((int)currentCar - 1).gameObject.SetActive(true);
+            playerCar.transform.GetChild((int)Upgrade.currentCar - 1).gameObject.SetActive(false);
+            Upgrade.currentCar += 1;
+            playerCar.transform.GetChild((int)Upgrade.currentCar - 1).gameObject.SetActive(true);
         }
-        ButtonsActiveState();
+        NextAndPreviouseButtonsActiveState();
+        GetCarPrices();
     }
 
     public void PreviousCar()
     {
-        if ((int)currentCar < playerCar.transform.childCount + 1)
+        if ((int)Upgrade.currentCar < playerCar.transform.childCount + 1)
         {
-            playerCar.transform.GetChild((int)currentCar - 1).gameObject.SetActive(false);
-            currentCar -= 1;
-            playerCar.transform.GetChild((int)currentCar - 1).gameObject.SetActive(true);
+            playerCar.transform.GetChild((int)Upgrade.currentCar - 1).gameObject.SetActive(false);
+            Upgrade.currentCar -= 1;
+            playerCar.transform.GetChild((int)Upgrade.currentCar - 1).gameObject.SetActive(true);
         }
-        ButtonsActiveState();
+        NextAndPreviouseButtonsActiveState();
+        GetCarPrices();
     }
 }
