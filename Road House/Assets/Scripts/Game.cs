@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 {
     public float bestDistance;
     public int collectedCoins;
+    public CarModel selectedCar;
 
     public static Game gameManager { get; private set; }
 
@@ -19,12 +20,9 @@ public class Game : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void Start()
-    {
-        //SaveLoadSystem.DeleteDatas();
         LoadGameData();
+        //SaveLoadSystem.DeleteDatas();
     }
 
     public void CoinCollected()
@@ -44,6 +42,12 @@ public class Game : MonoBehaviour
         SaveGameData();
     }
 
+    public void CarSelected(CarModel _selectedCar)
+    {
+        selectedCar = _selectedCar;
+        SaveGameData();
+    }
+
     #region Save and Load System
     public void SaveGameData()
     {
@@ -58,11 +62,15 @@ public class Game : MonoBehaviour
         {
             bestDistance = gameData.bestDistance;
             collectedCoins = gameData.coin;
+            selectedCar = gameData.selectedCar;
         }
         else
         {
             bestDistance = 0.0f;
             collectedCoins = 0;
+            selectedCar = CarModel.Polo;
+
+            SaveGameData();
         }
     }
     #endregion

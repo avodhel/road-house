@@ -52,6 +52,7 @@ public class UI : MonoBehaviour
     {
         startPanel.SetActive(true);
         upgradePanel.SetActive(false);
+        Game.gameManager.CarSelected(UpgradeUI.currentCar);
     }
 
     public void GameOver()
