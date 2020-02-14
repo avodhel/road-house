@@ -11,6 +11,10 @@ public class UI : MonoBehaviour
     public Text coinText;
     public GameObject startPanel;
     public GameObject gameOverPanel;
+    public GameObject upgradePanel;
+
+    [HideInInspector]
+    public bool startGameControl = false;
 
     public static UI UIManager { get; private set; }
 
@@ -35,6 +39,19 @@ public class UI : MonoBehaviour
     public void StartGame()
     {
         startPanel.SetActive(false);
+        startGameControl = true;
+    }
+
+    public void OpenUpgradeCarScene()
+    {
+        startPanel.SetActive(false);
+        upgradePanel.SetActive(true);
+    }
+
+    public void CloseUpgradeCarScene()
+    {
+        startPanel.SetActive(true);
+        upgradePanel.SetActive(false);
     }
 
     public void GameOver()

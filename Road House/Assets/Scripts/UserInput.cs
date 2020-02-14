@@ -21,7 +21,7 @@ public class UserInput : MonoBehaviour
 
     private void UserInputDetect()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (UI.UIManager.startGameControl && Input.GetMouseButtonDown(0))
         {
             playerCar.CarMovement();
         }

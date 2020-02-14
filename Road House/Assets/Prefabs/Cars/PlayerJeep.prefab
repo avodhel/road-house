@@ -376,13 +376,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 710608721510432528}
-  - component: {fileID: 705971912827872558}
-  - component: {fileID: 7978026712863709287}
-  - component: {fileID: 236529018922506304}
-  - component: {fileID: 705971912827872559}
   - component: {fileID: 705971912827872544}
   m_Layer: 0
-  m_Name: PlayerCar
+  m_Name: PlayerCar1
   m_TagString: playerCarTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,61 +403,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &705971912827872558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705229782531084862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3b805252478ab42b6eb9a8b294bf50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  carCrashedControl: 0
---- !u!114 &7978026712863709287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705229782531084862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b955b39f9206ad48ae7eb5be19d37ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &236529018922506304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705229782531084862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd51b3e5ec6d014d83e37f0b8e927e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceText: {fileID: 0}
---- !u!54 &705971912827872559
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705229782531084862}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
 --- !u!65 &705971912827872544
 BoxCollider:
   m_ObjectHideFlags: 0
