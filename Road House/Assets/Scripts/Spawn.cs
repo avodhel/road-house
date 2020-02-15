@@ -39,8 +39,8 @@ public class Spawn : MonoBehaviour
 
     public void SpawnAICar(Transform carSpawnPoint, float carRotation)
     {
-        Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(carRotation);
-        Instantiate(aiCar, carSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
+            Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(carRotation);
+            Instantiate(aiCar, carSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
     }
 
     public void SpawnCoin(Transform coinSpawnPoint)

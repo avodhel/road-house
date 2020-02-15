@@ -24,6 +24,7 @@ public class UserInput : MonoBehaviour
         if (UI.UIManager.startGameControl && Input.GetMouseButtonDown(0))
         {
             playerCar.CarMovement();
+            AICar.aiCarMoveControl = true;
         }
     }
 }

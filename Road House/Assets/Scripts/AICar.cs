@@ -6,6 +6,8 @@ public class AICar : Car
 {
     public Color[] colors;
 
+    public static bool aiCarMoveControl = false;
+
     protected override void Start()
     {
         base.Start();
@@ -14,7 +16,10 @@ public class AICar : Car
 
     private void FixedUpdate()
     {
-        CarMovement();
+        if (aiCarMoveControl)
+        {
+            CarMovement();
+        }
     }
 
     public void ChooseCarColor()

@@ -52,7 +52,7 @@ public class UI : MonoBehaviour
     {
         startPanel.SetActive(true);
         upgradePanel.SetActive(false);
-        Game.gameManager.CarSelected(Upgrade.currentCar);
+        Game.gameManager.PrepareSelectedCar();
     }
 
     public void GameOver()
@@ -68,5 +68,6 @@ public class UI : MonoBehaviour
         gameOverPanel.gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         CarDistance.DistanceCalculater(CarDistanceState.Reset);
+        AICar.aiCarMoveControl = false;
     }
 }
