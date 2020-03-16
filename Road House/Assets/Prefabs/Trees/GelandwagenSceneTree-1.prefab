@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4716211739345890}
   - component: {fileID: 33922885191572068}
   - component: {fileID: 23324072874252294}
-  m_Layer: 0
+  - component: {fileID: 3657920385168752933}
+  m_Layer: 8
   m_Name: GelentwagenSceneTree-1_model
-  m_TagString: Untagged
+  m_TagString: treeTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3657920385168752933
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392606021569186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 149bca08235777a448da6ef6ecee1484, type: 3}
 --- !u!1 &1723335361434436
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,9 +103,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4157778196617764}
   - component: {fileID: 8578777810724071960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GelandwagenSceneTree-1
-  m_TagString: Untagged
+  m_TagString: treeTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,8 +134,8 @@ CapsuleCollider:
   m_GameObject: {fileID: 1723335361434436}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
-  m_Height: 3.27
+  m_Height: 7.34
   m_Direction: 1
-  m_Center: {x: 0, y: 1.29, z: 0}
+  m_Center: {x: 0, y: 3.48, z: 0}

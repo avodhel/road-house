@@ -13,13 +13,38 @@ public class CameraFollow : MonoBehaviour
         CalculateOffset();
     }
 
+    private void Update()
+    {
+        transform.position = car.transform.position + offset;
+        DrawRay();
+    }
+
     private void CalculateOffset()
     {
         offset = transform.position - car.transform.position;
     }
 
-    private void LateUpdate()
+    #region Draw Raycast
+
+    private void DrawRay()
     {
-        transform.position = car.transform.position + offset;
+        RaycastHit[] hits = hits = Physics.RaycastAll(transform.position,
+                                                      transform.forward, 
+                                                      100.0F);
+        foreach (RaycastHit h in hits)
+        {
+            if (h.transform.tag == "treeTag")
+            {
+                Debug.Log("Hit!");
+                MeshRenderer meshRend = h.transform.GetComponentInChildren<MeshRenderer>();
+                // make transparent
+                meshRend.material.shader = Shader.Find("Transparent/Diffuse");
+                Color tempColor = meshRend.material.color;
+                tempColor.a = 0.15F;
+                meshRend.material.color = tempColor;
+            }
+        }
     }
+
+    #endregion
 }
