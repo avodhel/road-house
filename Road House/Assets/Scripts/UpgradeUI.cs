@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
+    [Header("Camera")]
+    public Camera mainCamera;
+    public Camera upgradeCamera;
+
+    [Header("Lock Unlock System")]
     public GameObject playerCar;
     public Button previousCarButton;
     public Button nextCarButton;
@@ -31,9 +36,18 @@ public class UpgradeUI : MonoBehaviour
 
     private void OnEnable()
     {
+        mainCamera.gameObject.SetActive(false);
+        upgradeCamera.gameObject.SetActive(true);
+
         currentCar = SaveLoadSystem.LoadGameData().selectedCar;
         lockList = SaveLoadSystem.LoadGameData().lockList;
         prepareUpgradeScene();
+    }
+
+    private void OnDisable()
+    {
+        mainCamera.gameObject.SetActive(true);
+        upgradeCamera.gameObject.SetActive(false);
     }
 
     private void CarsLockState()

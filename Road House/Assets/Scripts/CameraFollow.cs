@@ -7,10 +7,11 @@ public class CameraFollow : MonoBehaviour
     public GameObject car;
 
     private Vector3 offset;
+    private float distance;
 
     private void Start()
     {
-        CalculateOffset();
+        CalculateOffsetAndDistance();
     }
 
     private void Update()
@@ -19,9 +20,10 @@ public class CameraFollow : MonoBehaviour
         DrawRay();
     }
 
-    private void CalculateOffset()
+    private void CalculateOffsetAndDistance()
     {
         offset = transform.position - car.transform.position;
+        distance = Vector3.Distance(transform.position, car.transform.position);
     }
 
     #region Draw Raycast
@@ -29,8 +31,8 @@ public class CameraFollow : MonoBehaviour
     private void DrawRay()
     {
         RaycastHit[] hits = hits = Physics.RaycastAll(transform.position,
-                                                      transform.forward, 
-                                                      100.0F);
+                                                      transform.forward,
+                                                      distance);
         foreach (RaycastHit h in hits)
         {
             if (h.transform.tag == "treeTag")
