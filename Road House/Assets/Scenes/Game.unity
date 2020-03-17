@@ -1576,7 +1576,7 @@ GameObject:
   - component: {fileID: 553049981}
   - component: {fileID: 553049980}
   m_Layer: 5
-  m_Name: UpgradePanel
+  m_Name: CarSelectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,11 +1656,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
-  upgradeCamera: {fileID: 1557395203}
+  carSelectCamera: {fileID: 1557395203}
   playerCar: {fileID: 801647073}
   previousCarButton: {fileID: 372351574}
   nextCarButton: {fileID: 892284090}
-  upgradeButton: {fileID: 1461040364}
+  carUnlockButton: {fileID: 1461040364}
   selectButton: {fileID: 789367817}
   lockImage: {fileID: 1158941639}
   carPriceText: {fileID: 306783595}
@@ -1694,10 +1694,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCar: {fileID: 801647073}
+  carDatas:
+  - {fileID: 11400000, guid: f74b626f67595ec4389d29acce2a27fc, type: 2}
+  - {fileID: 11400000, guid: 531b9b291be9d444884cc0ab7c14136d, type: 2}
+  - {fileID: 11400000, guid: 69798845ff2f0a34a93df0997d041220, type: 2}
+  - {fileID: 11400000, guid: 639ef69232e11c54faeb291f537929fb, type: 2}
+  - {fileID: 11400000, guid: 40a640ab5ef7405468f0b1a4a538362e, type: 2}
+  - {fileID: 11400000, guid: 6bf81e6e200dadb418cce719d1131182, type: 2}
+  - {fileID: 11400000, guid: 0b124ec8346792a4799ddd962761724d, type: 2}
+  - {fileID: 11400000, guid: d0b99270f39ecff4986148e0586159f4, type: 2}
+  selectedCar: 0
   bestDistance: 0
   collectedCoins: 0
-  selectedCar: 0
-  lockList: 
 --- !u!4 &567036094
 Transform:
   m_ObjectHideFlags: 0
@@ -4322,7 +4330,7 @@ GameObject:
   - component: {fileID: 1461040365}
   - component: {fileID: 1461040364}
   m_Layer: 5
-  m_Name: UpgradeButton
+  m_Name: CarUnlockButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4751,7 +4759,7 @@ GameObject:
   - component: {fileID: 1557395204}
   - component: {fileID: 1557395203}
   m_Layer: 0
-  m_Name: Upgrade Camera
+  m_Name: Car Select Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

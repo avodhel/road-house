@@ -7,7 +7,7 @@ public class CarData : ScriptableObject
 {
     public int Id;
     public CarModel carModel;
+    public GameObject carPrefab;
     public int price;
     public bool unlocked;
-    public bool selected;
 }

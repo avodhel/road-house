@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    [Header("Player")]
     public GameObject playerCar;
-    public float bestDistance;
-    public int collectedCoins;
+
+    [Header("Car Data")]
+    public CarData[] carDatas;
     public CarModel selectedCar;
     public List<bool> lockList = new List<bool>();
+
+    [Header("Game Data")]
+    public float bestDistance;
+    public int collectedCoins;
+
+    private CarData selectedCarData;
 
     public static Game gameManager { get; private set; }
 
@@ -32,6 +40,26 @@ public class Game : MonoBehaviour
         PrepareSelectedCar();
     }
 
+    #region Car
+
+    public void CarSelected(int carId)
+    {
+        selectedCar = carDatas[carId].carModel;
+        SaveGameData();
+    }
+
+    public CarData GetSelectedCarData()
+    {
+        foreach (var carData in carDatas)
+        {
+            if (carData.carModel == selectedCar)
+            {
+                selectedCarData = carData;
+            }
+        }
+        return selectedCarData;
+    }
+
     public void PrepareSelectedCar()
     {
         for (int i = 0; i < playerCar.transform.childCount; i++)
@@ -47,12 +75,41 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void CarUnlockSystem(int carId)
+    {
+        lockList[carId] = true;
+        carDatas[carId].unlocked = true;
+        collectedCoins -= carDatas[carId].price;
+        UI.UIManager.coinText.text = collectedCoins.ToString();
+        SaveGameData();
+    }
+
+    #endregion
+
+    #region Coin
+
     public void CoinCollected()
     {
         FindObjectOfType<SFX>().PlaySoundEffect("coin");
         collectedCoins += 1;
         UI.UIManager.coinText.text = collectedCoins.ToString();
     }
+
+    public bool CheckCoinAccount(int carId)
+    {
+        if (collectedCoins >= carDatas[carId].price)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    #endregion
+
+    #region Distance
 
     public void CheckBestDistance(float newDistance)
     {
@@ -64,19 +121,7 @@ public class Game : MonoBehaviour
         SaveGameData();
     }
 
-    public void CarSelected(CarModel _selectedCar)
-    {
-        selectedCar = _selectedCar;
-        SaveGameData();
-    }
-
-    public void CarUnlockSystem(int carValue, int carPrice)
-    {
-        lockList[carValue] = false;
-        collectedCoins -= carPrice;
-        UI.UIManager.coinText.text = collectedCoins.ToString();
-        SaveGameData();
-    }
+    #endregion
 
     #region Save and Load System
     public void SaveGameData()
@@ -93,14 +138,25 @@ public class Game : MonoBehaviour
             bestDistance = gameData.bestDistance;
             collectedCoins = gameData.coin;
             selectedCar = gameData.selectedCar;
+
+            //Cars Lock/Unlock Data
             lockList = gameData.lockList;
+            for (int i = 0; i < lockList.Count; i++)
+            {
+                carDatas[i].unlocked = lockList[i];
+            }
         }
         else
         {
             bestDistance = 0.0f;
-            collectedCoins = 0;
+            collectedCoins = 250;
             selectedCar = CarModel.Polo;
-            lockList = new List<bool> { false, true, true, true, true, true, true, true };
+
+            //Cars Lock/Unlock Data
+            for (int i = 0; i < carDatas.Length; i++)
+            {
+                lockList.Add(carDatas[i].unlocked);
+            }
 
             SaveGameData();
         }

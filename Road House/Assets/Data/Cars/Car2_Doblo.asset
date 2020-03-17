@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1312b6f56ac3a4e89d29212e4cde07, type: 3}
-  m_Name: Truck
+  m_Name: Car2_Doblo
   m_EditorClassIdentifier: 
-  Id: 4
-  carModel: 5
-  price: 25
+  Id: 1
+  carModel: 2
+  carPrefab: {fileID: 3285015597045570216, guid: 5c26a3d9e343b1b4b95e8a1b59bdec69,
+    type: 3}
+  price: 10
   unlocked: 0
-  selected: 0

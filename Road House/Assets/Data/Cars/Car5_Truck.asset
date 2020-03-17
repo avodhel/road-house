@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1312b6f56ac3a4e89d29212e4cde07, type: 3}
-  m_Name: Jeep
+  m_Name: Car5_Truck
   m_EditorClassIdentifier: 
-  Id: 6
-  carModel: 7
-  price: 35
+  Id: 4
+  carModel: 5
+  carPrefab: {fileID: 3339762294753799809, guid: 8329f5ff57e8c104eb66e4eb7e5a3cd3,
+    type: 3}
+  price: 25
   unlocked: 0
-  selected: 0

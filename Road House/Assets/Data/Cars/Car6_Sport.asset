@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1312b6f56ac3a4e89d29212e4cde07, type: 3}
-  m_Name: Cooper
+  m_Name: Car6_Sport
   m_EditorClassIdentifier: 
-  Id: 2
-  carModel: 3
-  price: 15
+  Id: 5
+  carModel: 6
+  carPrefab: {fileID: 8313129604640987516, guid: a1989dbd8abc0a547af2ea5b8e5e0062,
+    type: 3}
+  price: 30
   unlocked: 0
-  selected: 0

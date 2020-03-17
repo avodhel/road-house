@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1312b6f56ac3a4e89d29212e4cde07, type: 3}
-  m_Name: Sedan
+  m_Name: Car1_Polo
   m_EditorClassIdentifier: 
-  Id: 3
-  carModel: 4
-  price: 20
-  unlocked: 0
-  selected: 0
+  Id: 0
+  carModel: 1
+  carPrefab: {fileID: 5477993722598725278, guid: b291e8d5f0a9b0f4e9b6f899bb18bd79,
+    type: 3}
+  price: 5
+  unlocked: 1
