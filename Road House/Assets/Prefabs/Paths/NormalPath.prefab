@@ -60,6 +60,36 @@ Transform:
   m_Father: {fileID: 2273384660643335398}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2630836025267877136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3018672251853286516}
+  m_Layer: 0
+  m_Name: TreeContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3018672251853286516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630836025267877136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1608536764530795260}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2927535059361792891
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +119,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1608536764530795260}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5900431070285900050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7254350779849132532}
+  m_Layer: 0
+  m_Name: BuildingContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7254350779849132532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900431070285900050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1608536764530795260}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6051000015625755146
 GameObject:
@@ -194,6 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608536764530795260}
   - component: {fileID: 9052791426955323749}
+  - component: {fileID: 5278364333980821203}
   m_Layer: 0
   m_Name: NormalPath
   m_TagString: normalPathTag
@@ -218,6 +279,8 @@ Transform:
   - {fileID: 1792638261}
   - {fileID: 3712234463566489240}
   - {fileID: 2207640796595458372}
+  - {fileID: 3018672251853286516}
+  - {fileID: 7254350779849132532}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -233,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4985ad8af0b3a342b1aa492e4a17a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treeContainer: {fileID: 2630836025267877136}
   treePoint: {fileID: 6761376884696295719}
   trees:
   - {fileID: 1949177100405964, guid: 4cb9d108e93ee7b4e9fb00e20fc49695, type: 3}
@@ -241,6 +305,7 @@ MonoBehaviour:
   - {fileID: 7178406272874861894, guid: 67843cff3920dda40890556cb72eeaa4, type: 3}
   - {fileID: 3136017105534219530, guid: 7059856f1c428024cb4dbcfc3b35ac59, type: 3}
   - {fileID: 4143376664607145210, guid: c5817d7d73799c448b019b67b847d4a8, type: 3}
+  buildingContainer: {fileID: 5900431070285900050}
   buildingPoint: {fileID: 1135530286033576713}
   buildings:
   - {fileID: 198648, guid: 298fe3c26d3cb144faebe3dc048a26a8, type: 3}
@@ -249,6 +314,19 @@ MonoBehaviour:
   - {fileID: 112746, guid: 7349374439187ba46bd7b62ff2227bf2, type: 3}
   aiCarSpawnPoint: {fileID: 1792638261}
   coinSpawnPoint: {fileID: 3712234463566489240}
+--- !u!65 &5278364333980821203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7746114406824699916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.82, y: 2, z: 4.71}
+  m_Center: {x: 0, y: 1.18, z: 2.51}
 --- !u!1 &8077942209277367476
 GameObject:
   m_ObjectHideFlags: 0

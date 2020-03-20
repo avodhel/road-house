@@ -11,6 +11,10 @@ public class AICar : Car
     protected override void Start()
     {
         base.Start();
+    }
+
+    private void OnEnable()
+    {
         ChooseCarColor();
     }
 
@@ -29,9 +33,9 @@ public class AICar : Car
 
     public Vector3 StartedRotation(float normalPathRot)
     {
-         Vector3 newRot = new Vector3(gameObject.transform.rotation.eulerAngles.x,
-                                      gameObject.transform.rotation.eulerAngles.y + normalPathRot,
-                                      gameObject.transform.rotation.eulerAngles.z);
+        Vector3 newRot = new Vector3(gameObject.transform.rotation.eulerAngles.x,
+                                     gameObject.transform.rotation.eulerAngles.y + normalPathRot,
+                                     gameObject.transform.rotation.eulerAngles.z);
         return newRot;
     }
 
@@ -81,5 +85,12 @@ public class AICar : Car
                 StartCoroutine(RotateAICar(mergePathDir, 1f));
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.transform.position = Vector3.zero;
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(-90, 90, 0));
+        gameObject.SetActive(false);
     }
 }

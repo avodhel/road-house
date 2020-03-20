@@ -37,7 +37,6 @@ public class CameraFollow : MonoBehaviour
         {
             if (h.transform.tag == "treeTag")
             {
-                Debug.Log("Hit!");
                 MeshRenderer meshRend = h.transform.GetComponentInChildren<MeshRenderer>();
                 // make transparent
                 meshRend.material.shader = Shader.Find("Transparent/Diffuse");

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     [Header("Path")]
+    public int numberOfPath = 5;
     public GameObject currentPath;
     public GameObject normalPath;
     public GameObject[] paths;
@@ -34,18 +35,23 @@ public class Spawn : MonoBehaviour
     private void Start()
     {
         currentDir = PathDirection.Top;
-        MultiplePathsSpawner(15);
+        MultiplePathsSpawner(numberOfPath);
     }
 
     public void SpawnAICar(Transform carSpawnPoint, float carRotation)
     {
-            Vector3 aiCarRot = aiCar.GetComponent<AICar>().StartedRotation(carRotation);
-            Instantiate(aiCar, carSpawnPoint.transform.position, Quaternion.Euler(aiCarRot));
+        GameObject instantiatedAICar = AICarPooler.SharedInstance.GetPooledObject(0);
+        Vector3 aiCarRot = instantiatedAICar.GetComponent<AICar>().StartedRotation(carRotation);
+        instantiatedAICar.transform.position = carSpawnPoint.transform.position;
+        instantiatedAICar.transform.rotation = Quaternion.Euler(aiCarRot);
+        instantiatedAICar.SetActive(true);
     }
 
     public void SpawnCoin(Transform coinSpawnPoint)
     {
-        Instantiate(goldCoin, coinSpawnPoint.transform.position, goldCoin.transform.rotation);
+        GameObject instantiatedCoin = CoinPooler.SharedInstance.GetPooledObject(0);
+        instantiatedCoin.transform.position = coinSpawnPoint.transform.position;
+        instantiatedCoin.SetActive(true);
     }
 
     public void MultiplePathsSpawner(int numberOfPaths)
@@ -71,18 +77,27 @@ public class Spawn : MonoBehaviour
 
     private void SpawnRandomPath()
     {
-        currentPath = Instantiate(paths[Random.Range(0, paths.Length)],
-                                  currentPath.transform.GetChild(1).transform.position,
-                                  currentPath.transform.rotation);
+        GameObject instantiatedRandomPath = PathPooler.SharedInstance.GetPooledObject(Random.Range(0, PathPooler.SharedInstance.itemsToPool.Count));
+        instantiatedRandomPath.SetActive(true);
+        instantiatedRandomPath.transform.position = currentPath.transform.GetChild(1).transform.position;
+        instantiatedRandomPath.transform.rotation = currentPath.transform.rotation;
+        currentPath = instantiatedRandomPath;
+        if (instantiatedRandomPath.transform.tag == "normalPathTag")
+        {
+            instantiatedRandomPath.GetComponent<NormalPath>().SpawnObject();
+        }
     }
 
     private void SpawnNormalPath()
     {
         Vector3 pathRotation = GetPathRotationAccordingToDir();
 
-        currentPath = Instantiate(normalPath,
-                          currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position,
-                          Quaternion.Euler(pathRotation));
+        GameObject instantiatedNormalPath = PathPooler.SharedInstance.GetPooledObject(1);
+        instantiatedNormalPath.SetActive(true);
+        instantiatedNormalPath.transform.position = currentPath.transform.GetChild(0).transform.GetChild((int)currentDir).transform.position;
+        instantiatedNormalPath.transform.rotation = Quaternion.Euler(pathRotation);
+        currentPath = instantiatedNormalPath;
+        instantiatedNormalPath.GetComponent<NormalPath>().SpawnObject();
     }
 
     private Vector3 GetPathRotationAccordingToDir()
@@ -92,20 +107,17 @@ public class Spawn : MonoBehaviour
 
         if (ChoosePathDirection() == PathDirection.Top)
         {
-            Debug.Log("Top");
             currentDir = PathDirection.Top;
             rotationVec3 = currentPath.transform.rotation.eulerAngles;
         }
         else if (ChoosePathDirection() == PathDirection.Left)
         {
-            Debug.Log("Left");
             currentDir = PathDirection.Left;
             rotationVec3 = transform.rotation.eulerAngles;
             rotationVec3.y = rotationY - 90;
         }
         else if (ChoosePathDirection() == PathDirection.Right)
         {
-            Debug.Log("Right");
             currentDir = PathDirection.Right;
             rotationVec3 = transform.rotation.eulerAngles;
             rotationVec3.y = rotationY + 90;

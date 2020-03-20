@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalPath : MonoBehaviour
+public class NormalPath : Paths
 {
     [Header("Tree")]
+    public GameObject treeContainer;
     public Transform treePoint;
     public GameObject[] trees;
 
     [Header("Building")]
+    public GameObject buildingContainer;
     public Transform buildingPoint;
     public GameObject[] buildings;
 
@@ -18,14 +20,31 @@ public class NormalPath : MonoBehaviour
     [Header("Coin")]
     public Transform coinSpawnPoint;
 
-    private void Start()
+    private void Awake()
     {
-        PrepareEnvironment(trees, treePoint);
-        PrepareEnvironment(buildings, buildingPoint);
-        SpawnObject();
+        InstantiateEnvironment(trees, treePoint, treeContainer);
+        InstantiateEnvironment(buildings, buildingPoint, buildingContainer);
     }
 
-    private void SpawnObject()
+    private void OnEnable()
+    {
+        ChooseObjectFromContainer(treeContainer);
+        ChooseObjectFromContainer(buildingContainer);
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < treeContainer.transform.childCount; i++)
+        {
+            treeContainer.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        for (int i = 0; i < buildingContainer.transform.childCount; i++)
+        {
+            buildingContainer.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void SpawnObject()
     {
         int spawnPossibility = Random.Range(0, 100);
         if (spawnPossibility < 60)
@@ -42,23 +61,22 @@ public class NormalPath : MonoBehaviour
         }
     }
 
-    private void PrepareEnvironment(GameObject[] environmentObjects, Transform objectPoint)
+    private void InstantiateEnvironment(GameObject[] environmentObjects, Transform objectPoint, GameObject container)
     {
-        //int instantiatePossibility = Random.Range(0, 100);
-        //if (instantiatePossibility < 50)
-        //{
-            GameObject choosenObject = environmentObjects[Random.Range(0, environmentObjects.Length)];
+        for (int i = 0; i < environmentObjects.Length; i++)
+        {
+            var objectRotation = new Vector3(environmentObjects[i].transform.rotation.eulerAngles.x,
+                                 gameObject.transform.rotation.eulerAngles.y + environmentObjects[i].transform.rotation.eulerAngles.y,
+                                 environmentObjects[i].transform.rotation.eulerAngles.z);
 
-            var objectRotation = new Vector3(choosenObject.transform.rotation.eulerAngles.x,
-                                             gameObject.transform.rotation.eulerAngles.y + choosenObject.transform.rotation.eulerAngles.y,
-                                             choosenObject.transform.rotation.eulerAngles.z);
+            GameObject instantiatedObject = Instantiate(environmentObjects[i], objectPoint.position, Quaternion.Euler(objectRotation));
+            (instantiatedObject as GameObject).transform.parent = container.transform;
+            instantiatedObject.SetActive(false);
+        }
+    }
 
-            GameObject instantiatedObject = Instantiate(choosenObject, objectPoint.position, Quaternion.Euler(objectRotation));
-            (instantiatedObject as GameObject).transform.parent = objectPoint.transform;
-        //}
-        //else
-        //{
-        //    return;
-        //}
+    private void ChooseObjectFromContainer(GameObject container)
+    {
+        container.transform.GetChild(Random.Range(0, container.transform.childCount)).gameObject.SetActive(true);
     }
 }

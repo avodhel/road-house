@@ -12,4 +12,9 @@ public class Coin : MonoBehaviour
             Game.gameManager.CoinCollected();
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
 }
