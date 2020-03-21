@@ -588,6 +588,7 @@ MonoBehaviour:
   - {fileID: 7462256755107845236, guid: bb4eaf7401ef3454b9a3b4d3f78bd471, type: 3}
   - {fileID: 4018914081571447301, guid: 53b8ff68578387b4f853b71bfb3d29b0, type: 3}
   mergePathDir: 0
+  fences: {fileID: 750011277443008733}
 --- !u!65 &1613033047342635164
 BoxCollider:
   m_ObjectHideFlags: 0

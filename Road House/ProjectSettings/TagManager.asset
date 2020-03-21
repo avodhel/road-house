@@ -10,6 +10,7 @@ TagManager:
   - playerCarTag
   - aiCarTag
   - treeTag
+  - fenceTag
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - 
   - Tree
   - AICar
-  - 
+  - Fence
   - 
   - 
   - 

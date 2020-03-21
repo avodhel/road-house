@@ -16,6 +16,9 @@ public class Paths : MonoBehaviour
     protected IEnumerator DeactivatePath()
     {
         yield return new WaitForSeconds(2);
-        gameObject.SetActive(false);
+        if (!Game.gameManager.gameOverControl)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

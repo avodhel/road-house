@@ -14,6 +14,9 @@ public class NormalPath : Paths
     public Transform buildingPoint;
     public GameObject[] buildings;
 
+    [Header("Fences")]
+    public GameObject fences;
+
     [Header("AI Car")]
     public Transform aiCarSpawnPoint;
 
@@ -34,6 +37,10 @@ public class NormalPath : Paths
 
     private void OnDisable()
     {
+        for (int i = 0; i < fences.transform.childCount; i++)
+        {
+            fences.transform.GetChild(i).gameObject.SetActive(true);
+        }
         for (int i = 0; i < treeContainer.transform.childCount; i++)
         {
             treeContainer.transform.GetChild(i).gameObject.SetActive(false);

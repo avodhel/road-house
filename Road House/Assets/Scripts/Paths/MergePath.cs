@@ -8,6 +8,9 @@ public class MergePath : Paths
     public GameObject[] sidePlaces;
     public PathDirection mergePathDir;
 
+    [Header("Fences")]
+    public GameObject fences;
+
     public delegate void PrepareMergePath(PathDirection dir);
     public PrepareMergePath prepareMergePath;
 
@@ -23,6 +26,7 @@ public class MergePath : Paths
 
     private void OnDisable()
     {
+        //place
         for (int i = 0; i < placeContainer.transform.childCount; i++)
         {
             placeContainer.transform.GetChild(i).gameObject.SetActive(false);
@@ -36,9 +40,13 @@ public class MergePath : Paths
             }
         }
         //fences
-        for (int i = 0; i < gameObject.transform.GetChild(3).transform.childCount; i++)
+        for (int i = 0; i < fences.transform.childCount; i++)
         {
-            gameObject.transform.GetChild(3).transform.GetChild(i).gameObject.SetActive(true);
+            fences.transform.GetChild(i).gameObject.SetActive(true);
+            for (int j = 0; j < fences.transform.GetChild(i).transform.childCount; j++)
+            {
+                fences.transform.GetChild(i).GetChild(j).gameObject.SetActive(true);
+            }
         }
     }
 
@@ -104,6 +112,6 @@ public class MergePath : Paths
 
     private void FencePlacing(PathDirection dir)
     {
-        gameObject.transform.GetChild(3).transform.GetChild((int)dir).gameObject.SetActive(false);
+        fences.transform.GetChild((int)dir).gameObject.SetActive(false);
     }
 }

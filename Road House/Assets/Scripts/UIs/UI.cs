@@ -57,6 +57,7 @@ public class UI : MonoBehaviour
 
     public void GameOver()
     {
+        Game.gameManager.gameOverControl = true;
         CarDistance.DistanceCalculater(CarDistanceState.Stop);
         Game.gameManager.CheckBestDistance(CarDistance.GetCurrentDistance());
         bestDistanceText.text = "Best: " + SaveLoadSystem.LoadGameData().bestDistance.ToString("F1");

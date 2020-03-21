@@ -16,6 +16,9 @@ public class Game : MonoBehaviour
     public float bestDistance;
     public int collectedCoins;
 
+    [HideInInspector]
+    public bool gameOverControl = false;
+
     private CarData selectedCarData;
 
     public static Game gameManager { get; private set; }

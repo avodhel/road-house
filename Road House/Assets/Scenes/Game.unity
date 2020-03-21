@@ -1707,6 +1707,7 @@ MonoBehaviour:
   lockList: 
   bestDistance: 0
   collectedCoins: 0
+  gameOverControl: 0
 --- !u!4 &567036094
 Transform:
   m_ObjectHideFlags: 0
