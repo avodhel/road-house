@@ -300,8 +300,6 @@ MonoBehaviour:
   treePoint: {fileID: 6761376884696295719}
   trees:
   - {fileID: 1949177100405964, guid: 4cb9d108e93ee7b4e9fb00e20fc49695, type: 3}
-  - {fileID: 1723335361434436, guid: 12d222319a37e5a46993dea99b3f3317, type: 3}
-  - {fileID: 1780794977131862, guid: 83e0fa68206f3334aade2cec397bcb07, type: 3}
   - {fileID: 7178406272874861894, guid: 67843cff3920dda40890556cb72eeaa4, type: 3}
   - {fileID: 3136017105534219530, guid: 7059856f1c428024cb4dbcfc3b35ac59, type: 3}
   - {fileID: 4143376664607145210, guid: c5817d7d73799c448b019b67b847d4a8, type: 3}
