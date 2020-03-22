@@ -152,7 +152,7 @@ public class Game : MonoBehaviour
         else
         {
             bestDistance = 0.0f;
-            collectedCoins = 250;
+            collectedCoins = 0;
             selectedCar = CarModel.Polo;
 
             //Cars Lock/Unlock Data
