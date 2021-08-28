@@ -6,4 +6,4 @@ Tried to turn an idea into a game. Idea came from Family Guy's [this scene](http
 
 # LINKS
 
-- [Itch.io](https://nordicebear.itch.io/road-house)
+- [Itch.io](https://avodhel.itch.io/road-house)
